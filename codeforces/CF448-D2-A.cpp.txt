@@ -1,0 +1,39 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int a[7];
+	int n, m, s;
+	for (int i = 0; i < 6; i++){
+		cin >> a[i];
+	}
+	cin >> s;
+	n = a[0] + a[1] + a[2], m = a[3] + a[4] + a[5];
+	cout << (ceil(double(n) / 5) + ceil(double(m) / 10) <= s ? "YES" : "NO");
+
+	return 0;
+}

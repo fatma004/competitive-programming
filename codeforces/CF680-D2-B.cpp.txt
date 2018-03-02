@@ -1,0 +1,49 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int n, x, ans = 0, c;
+	cin >> n >> x, x--;
+	vector<int>v(n);
+	for (int i = 0; i < n; i++){
+		cin >> v[i];
+	}
+	for (int i = 1; i + x < n || x - i >= 0; i++){
+		if (x - i < 0){
+			ans += v[x + i];
+		}
+		else if (x + i >= n){
+			ans += v[x - i];
+		}
+		else if (v[x - i] && v[x + i]){
+			ans += 2;
+		}
+	}
+	cout << ans + v[x];
+
+	return 0;
+}

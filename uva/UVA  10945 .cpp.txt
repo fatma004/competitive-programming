@@ -1,0 +1,51 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+char ss[1000000];
+bool ok(string s){
+	string c, r;
+	for (int i = 0; i < s.size(); i++){
+		if (isalpha(s[i]))c += tolower(s[i]);
+	}
+	r = c;
+	reverse(r.begin(), r.end());
+	return (c == r);
+}
+ 
+int main()
+{
+	//ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+ 
+	string s;
+	while (true){
+		gets(ss), s = ss;
+		if (s == "DONE")return 0;
+ 
+		if (!ok(s))
+			printf("Uh oh..\n");
+		else
+			printf("You won't be eaten!\n");
+	}
+ 
+	return 0;
+}

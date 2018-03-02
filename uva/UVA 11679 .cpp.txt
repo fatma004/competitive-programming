@@ -1,0 +1,50 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+bool ok(vector<ll>&v){
+	for (ll i : v){
+		if (i < 0)return false;
+	}
+	return true;
+}
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+ 
+	ll n, b, d, c, vv;
+	while (true){
+		cin>>n>>b;
+		if (!n&&!b)return 0;
+		vector<ll>v(20,0);
+		for (int i = 0; i < b; i++){
+			cin >> v[i];
+		}
+		while (n--){
+			cin >> d >> c >> vv, d--, c--;
+			v[c] += vv, v[d] -= vv;
+		}
+		cout << (ok(v) ? "S" : "N") << endl;
+	}
+ 
+	return 0;
+}

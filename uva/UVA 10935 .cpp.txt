@@ -1,0 +1,55 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+ 
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+ 
+	int n;
+	while (cin >> n){
+		if (!n)return 0;
+		if (n == 1){
+			cout << "Discarded cards:\n";
+			cout << "Remaining card: 1" << endl;
+			continue;
+		}
+		queue<int>q, ans;
+		for (int i = 1; i <= n; i++){
+			q.push(i);
+		}
+		while (q.size() > 1){
+			ans.push(q.front());
+			q.pop();
+			q.push(q.front()), q.pop();
+		}
+			cout << "Discarded cards: " << 1, ans.pop();
+		while (!ans.empty()){
+			cout << ", " << ans.front(), ans.pop();
+		}
+		cout << endl;
+ 
+		cout << "Remaining card: " << q.front() << endl;
+	}
+	return 0;
+}

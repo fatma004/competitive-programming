@@ -1,0 +1,57 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+ 
+int n;
+string s;
+vector<int>vr, vd;
+int m(){
+	int mn = 1e7;
+	for (int i = 0; i < vr.size(); i++){
+		for (int j = 0; j < vd.size(); j++){
+			mn = min(abs(vr[i] - vd[j]), mn);
+		}
+	}
+	return mn;
+}
+int solve(){
+	for (int i = 0; i < s.size(); i++){
+		if (s[i] == 'Z')return 0;
+		if (s[i] == 'R')vr.push_back(i);
+		else if (s[i] == 'D')vd.push_back(i);
+	}
+	if (vr.size() == 0 || vd.size() == 0)return 0;
+	return m();
+}
+ 
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+ 
+	while (cin >> n >> s){
+		vr.clear(), vd.clear();
+		cout << solve() << endl;
+	}
+ 
+	return 0;
+}

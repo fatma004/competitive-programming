@@ -1,0 +1,56 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int n, q, l, r, c;
+	cin >> n;
+	vector<ll>v(n), vs(n);
+	for (int i = 0; i < n; i++){
+		cin >> v[i], vs[i] = v[i];
+	}
+	sort(vs.begin(), vs.end());
+	for (int i = 1; i < n; i++){
+			v[i] += v[i - 1], vs[i] += vs[i - 1];
+	}
+	/*for (int i : vs){
+		cout << i << ' ';
+	}
+	cout << endl;*/
+	cin >> q;
+	while (q--){
+		cin >> c >> l >> r, l--, r--;
+		if (c == 1){
+			cout << (l ? v[r] - v[l-1] : v[r]);
+		}
+		else{
+			cout << (l ? vs[r] - vs[l-1] : vs[r]);
+		}
+		cout << endl;
+	}
+
+	return 0;
+}
