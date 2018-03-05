@@ -1,0 +1,54 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+int main(){
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int n;
+	while (cin >> n&&n){
+
+		int chgr, chgc, c, r;
+		chgr = chgc = -1, c = r = 0;
+		vector<vector<int>>v(n, vector<int>(n));
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < n; j++){
+				cin >> v[i][j];
+			}
+		}
+		for (int i = 0; i < n; i++){
+			int sr = 0, sc = 0;
+			for (int j = 0; j < n; j++){
+				sr += v[i][j]; sc += v[j][i];
+			}
+			if (sr & 1)r++, chgr = i;
+			if (sc & 1)c++, chgc = i;
+		}
+		
+		if (!c&&!r)cout << "OK";
+		else if (c == 1 && r == 1)cout << "Change bit (" << chgr + 1 << ',' << chgc + 1 << ")";
+		else cout << "Corrupt";
+		cout << endl;
+	}
+}
