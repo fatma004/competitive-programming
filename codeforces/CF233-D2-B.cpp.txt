@@ -1,0 +1,53 @@
+
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+int sum_d(int n){
+	int s = 0;
+	while (n){
+		s += n % 10, n /= 10;
+	}
+	return s;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	ll n;
+	cin >> n;
+	for (int i = 1; i < 82; i++){
+		ll s = 1, e = sqrt(n), md, c;
+		while (s <= e){
+			md = (e + s) / 2; // md=s+(e-s)/2;
+			c = md*md + md*i;
+			if (c == n&&sum_d(md) == i)return cout << md, 0;
+			if (c < n)s = md + 1;
+			else e = md - 1;
+		}
+	}
+	cout << -1;
+	
+	return 0;
+}
