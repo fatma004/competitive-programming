@@ -1,0 +1,46 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+void fast(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(NULL), cout.tie(NULL);
+}
+
+int main()
+{
+	fast();
+
+	string s, t;
+	int a, b;
+	while (cin >> s >> t){
+		a = b = 0;
+		while (a < s.size() && b < t.size()){
+			if (s[a] == t[b])a++;
+			b++;
+		}
+		cout << (a == s.size() ? "Yes" : "No") << endl;
+	}
+
+	return 0;
+}
