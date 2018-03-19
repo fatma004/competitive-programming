@@ -1,0 +1,55 @@
+
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+
+ll n, k;
+
+bool can(ll m){
+	ll s = 0, p = 1;
+	while (m / p){
+		s+= m / p, p *= k;
+	}
+	return (s >= n);
+}
+
+ll BS(){
+	ll s = 0, e = 1e9, md, ans=1e15;
+	while (s <= e){
+		md = s + (e - s) / 2;
+		if (can(md)){
+			ans = md, e = md - 1;
+		}
+		else s = md + 1;
+	}
+	return ans;
+}
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	while (cin >> n >> k){
+		cout << BS() << endl;
+	}
+	return 0;
+}
