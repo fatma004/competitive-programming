@@ -1,0 +1,61 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+using namespace std;
+double ebs = 1e-8;
+int n; double k;
+vector<double>v;
+
+bool can(double m){
+	double s = 0.0;
+	for (int i = 0; i<n; i++){
+		if (v[i] > m)s += (v[i] - m)*(1.0 - (k / 100.0));
+		else s -= (m - v[i]);
+	}
+	return (s >= 0.0);
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	cin >> n >> k;
+	vector<double>vv(n);
+	for(int i = 0; i < n; i++){
+		cin >> vv[i];
+	}
+	v = vv;
+
+	sort(v.begin(), v.end());
+	double s = 0.0, e = v[n-1], md, ans=0.0;
+	while (e-s>ebs){
+		 md = (s + e) / 2.0;
+				if (can(md)){
+					ans = md, s = md;
+				}
+				else e = md ;
+			}
+
+	cout << fixed << setprecision(6) << ans;
+
+	return 0;
+}

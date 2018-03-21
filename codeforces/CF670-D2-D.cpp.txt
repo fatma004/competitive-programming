@@ -1,0 +1,66 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+ll n, k;
+vector<ll>v1,v2;
+
+bool can(ll md){
+
+	ll h = k, su = 0;
+	for (int i = 0; i < n; i++){
+		 su = v1[i] * md;
+		 if (su <= v2[i])continue;
+		 h -= (su - v2[i]);
+		 if (h < 0)return false;
+	}
+	return true;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	cin >> n >> k;
+	v1.resize(n), v2.resize(n);
+	for(int i = 0; i < n; i++){
+		cin >> v1[i];
+	}
+	for (int i = 0; i < n; i++){
+		cin >> v2[i];
+	}
+
+	ll s = 0, e = 1e10, md, ans = 0;
+	while (s <= e){
+		md = s + (e - s) / 2;
+		if (can(md)){
+			ans = md, s = md + 1;
+		}
+		else e = md - 1;
+	}
+
+	cout << ans;
+
+	return 0;
+}
