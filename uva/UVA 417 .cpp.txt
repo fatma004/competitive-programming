@@ -1,0 +1,99 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+int n = 0;
+map<string, int>mp;
+void solve(){
+
+	string s;
+	for ( char i = 'a'; i <= 'z'; i++){
+		s = i;
+		mp[s] = ++n;
+	}
+
+	for (char i = 'a'; i <= 'z'; i++){
+		string s1; s1 += i;
+		for (char j = i + 1; j <= 'z'; j++){
+			string s2; s2 += s1, s2 += j;
+			mp[s2] = ++n;
+		}
+	}
+
+	for (char i = 'a'; i <= 'z'; i++){
+		string s1; s1 += i;
+		for (char j = i + 1; j <= 'z'; j++){
+			string s2; s2 += s1, s2 += j;
+			for (char k = j + 1; k <= 'z'; k++){
+				string s3;	s3 = s2, s3 += k;
+				mp[s3] = ++n;
+			}
+		}
+	}
+
+	for (char i = 'a'; i <= 'z'; i++){
+		string s1; s1 += i;
+		for (char j = i + 1; j <= 'z'; j++){
+			string s2; s2 = s1, s2 += j;
+			for (char k = j + 1; k <= 'z'; k++){
+				string s3; s3 = s2, s3 += k;
+				for (char l = k + 1; l <= 'z'; l++){
+					string s4; s4 = s3, s4 += l;
+					mp[s4] = ++n;
+				}
+			}
+		}
+	}
+
+	for (char i = 'a'; i <= 'z'; i++){
+		string s1; s1 += i;
+		for (char j = i + 1; j <= 'z'; j++){
+			string s2; s2 += s1, s2 += j;
+			for (char k = j + 1; k <= 'z'; k++){
+				string s3; s3 = s2, s3 += k;
+				for (char l = k + 1; l <= 'z'; l++){
+					string s4; s4 = s3, s4 += l;
+					for (char v = l + 1; v <= 'z'; v++){
+						string s5; s5 = s4, s5 += v;
+						mp[s5] = ++n;
+					}
+				}
+			}
+		}
+	}
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+	
+	solve();
+
+	string s;
+	while (cin >> s){
+		cout << mp[s] << '\n';
+	}
+
+	return 0;
+}

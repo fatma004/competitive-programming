@@ -1,0 +1,58 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int n;
+	while (cin >> n){
+		queue<int>q;
+		priority_queue<int>p;
+		stack<int>s;
+		vector<int>v(3, 0);
+		int x, y, c = 0;
+		for (int i = 0; i < n; i++){
+			cin >> x >> y;
+			if (x == 1){
+				q.push(y), p.push(y), s.push(y);
+			}
+			else {
+				c++;
+				if (!q.empty() && q.front() == y)v[0]++, q.pop();
+				if (!p.empty() && p.top() == y)v[1]++, p.pop();
+				if (!s.empty() && s.top() == y)v[2]++, s.pop();
+			}
+		}
+		int cc = count(v.begin(), v.end(), c);
+		if (cc == 0)cout << "impossible";
+		else if (cc > 1)cout << "not sure";
+		else {
+			cout << (c == v[0] ? "queue" : c == v[1] ? "priority queue" : "stack");
+		}
+		cout << '\n';
+	}
+	return 0;
+}

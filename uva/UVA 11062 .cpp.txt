@@ -1,0 +1,50 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	string s, c;
+	set<string>st;
+	while (getline(cin, s)){
+		if (s.empty())continue;
+		for (int i = 0; i < s.size()-1; i++){
+
+				if (isalpha(s[i]))c += tolower(s[i]);
+				else if (s[i] == '-')c += s[i];
+				else if (c.size())st.insert(c), c.clear();
+		}
+
+		if (isalpha(s[s.size() - 1]))c += tolower(s[s.size() - 1]);
+        if (c.size() && s[s.size() - 1 ]!= '-')st.insert(c), c.clear();
+
+	}
+	for (auto ii : st){
+		cout << ii << '\n';
+	}
+
+	return 0;
+}

@@ -1,0 +1,47 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	string s; int q, x, y;
+	map<pair<int, int>,int>mp;
+	while (cin >> s&&s != "#"){
+		cin >> x >> y;
+		mp.insert({ { y, x } ,y});
+	}
+	cin >> q;
+	while (q--){
+		map<pair<int, int>,int>::iterator it = mp.begin();
+		cout << it->first.second<< '\n';
+		pair<pair<int, int>,int>po = *mp.begin();
+		mp.erase(it);
+		po.first.first += po.second;
+		mp.insert(po);
+	}
+
+	return 0;
+}
