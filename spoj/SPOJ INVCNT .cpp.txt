@@ -1,0 +1,81 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-10
+using namespace std;
+
+vector<int>v;
+ll ans = 0;
+
+void merge(int s, int md, int e){
+
+	vector<int>v1, v2;
+	for (int i = s; i <= md; i++){
+		v1.push_back(v[i]);
+	}
+	for (int i = md + 1; i <= e; i++){
+		v2.push_back(v[i]);
+	}
+	int d1, d2, i = s;
+	d1 = d2 = 0;
+	for (; i <= e; i++){
+		if (d1 >= v1.size()){
+			v[i] = v2[d2++];
+		}
+		else if (d2 >= v2.size()){
+			v[i] = v1[d1++];
+		}
+		else if (v1[d1] <= v2[d2]){
+			v[i] = v1[d1++];
+		}
+		else {
+			v[i] = v2[d2++], ans += (v1.size() - d1);
+
+		}
+	}
+}
+
+void merge_sort(int s, int e){
+	if (s >= e)return;
+	int md = (s + e) / 2;
+	merge_sort(s, md);
+	merge_sort(md + 1, e);
+	merge(s, md, e);
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int n, t;
+	cin >> t;
+	while (t--){
+		cin >> n, ans = 0;
+		v.resize(n);
+		for (int i = 0; i < n; i++){
+			cin >> v[i];
+		}
+		merge_sort(0, n - 1);
+		cout << ans << endl;
+
+	}
+	return 0;
+}
