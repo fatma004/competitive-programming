@@ -1,0 +1,49 @@
+// Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-10
+using namespace std;
+
+int main()
+{
+	int n, x, c;
+	while (cin >> n&&n){
+		while (cin >> x&&x){
+		vector<int>v(n);
+		stack<int>s;
+		v[0] = x, c = 0;
+			for (int i = 1; i < n; i++){
+				cin >> v[i];
+			}
+			for (int i = 1; i <= n; i++){
+				s.push(i);
+				while (!s.empty() && s.top() == v[c]){
+					s.pop(), c++;
+				}
+			}
+			cout << (s.empty() ? "Yes" : "No") << '\n';
+		}
+		cout << '\n';
+	}
+
+	return 0;
+}
