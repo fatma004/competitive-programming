@@ -1,0 +1,66 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+vector<int>v;
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int t, n, m, k, p = 0;
+	cin >> t;
+	while (t--){
+
+		cin >> n >> m >> k;
+		v.resize(n);
+		v[0] = 1, v[1] = 2, v[2] = 3;
+		map<int, int>mp;
+		for (int i = 3; i < n; i++){
+			v[i] = 1 + (v[i - 1] + v[i - 2] + v[i - 3]) % m;
+		}
+		int j = 0, ans = 1e9;
+		for (int i = 0; i < n; i++){
+			for (; j < n&&mp.size() < k; j++){
+				if (v[j] && v[j] <= k)
+					mp[v[j]]++;
+			}
+			if (mp.size() == k){
+				ans = min(ans, j - i);
+			}
+			if (mp[v[i]] <= 1){ //..
+				mp.erase(v[i]);
+			}
+			else {
+				mp[v[i]]--;
+			}
+		}
+
+		cout << "Case " << ++p << ": ";
+		if (ans == 1e9)cout << "sequence nai" << '\n';
+		else cout << ans << '\n';
+	}
+
+	return 0;
+}
