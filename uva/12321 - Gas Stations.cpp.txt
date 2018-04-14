@@ -1,0 +1,66 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+/*bool cmp(pair<int, int>a, pair<int, int>b){
+	
+	if (a.first == b.first&&a.second > b.second)return true;
+	return (a.first < b.first);
+}*/
+bool cmp(pair<int, int> a, pair<int, int> b)
+{
+	if (a.first == b.first&&a.second < b.second)return true;
+	return (a.first < b.first);
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int l, n, x, r;
+	while (cin >> l >> n&&n){
+	
+		vector<pair<int, int>>v(n);
+		for (int i = 0; i < n; i++){
+			cin >> x >> r;
+			v[i].first = max(0, x - r), v[i].second = x + r;
+		}
+
+		sort(v.begin(), v.end(), cmp);
+		int su = 0, j = 0, mx = 0, c = 0;
+		while (su < l){
+
+			for (; j < n&&v[j].first <= su; j++){
+				mx = max(mx, v[j].second);
+			}
+
+			if (su == mx)break;
+			su = mx, c++;
+		}
+
+		cout << (su < l ? -1 : n - c) << '\n';
+	}
+	
+	return 0;
+}
