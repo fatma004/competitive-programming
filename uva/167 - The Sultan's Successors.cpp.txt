@@ -1,0 +1,71 @@
+//Don't despair and never lose hope ^_^
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<functional>
+#include <bitset>
+#include<algorithm>
+#include<fstream>
+#include<string>
+#include<stdio.h>
+#include<iomanip>
+#include<sstream>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<deque>
+#include<stack>
+#include<set>
+#include<map>
+typedef unsigned long long ull;
+typedef long long ll;
+typedef long double ld;
+#define PI 3.14159265
+#define ebs 1e-8
+using namespace std;
+
+ll ans, su;
+
+vector<vector<int>>v(9, vector<int>(9));
+vector<int>r(20), c(20), d1(20), d2(20);
+
+void solve(int j){
+
+	if (j >= 8){
+		ans = max(ans, su);
+		return;
+	}
+
+	for (int i = 0; i < 8; i++){
+		if (r[i] || c[j] || d1[i - j + 8] || d2[i + j])continue;
+		r[i] = c[j] = d1[i - j + 8] = d2[i + j] = 1;
+		su += v[i][j];
+		solve(j + 1);
+		r[i] = c[j] = d1[i - j + 8] = d2[i + j] = 0;
+		su -= v[i][j];
+	}
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0); cin.tie(NULL), cout.tie(NULL);
+
+	int k;
+	cin >> k;
+	while (k--){
+
+		for (int i = 0; i < 8; i++){
+			for (int j = 0; j < 8; j++){
+				cin >> v[i][j];
+			}
+		}
+
+		ans = su = 0;
+		vector<int>upd(20, 0);
+		r = c = d1 = d2 = upd;
+		solve(0);
+		cout << setw(5) << ans << '\n';
+		
+	}
+
+	return 0;
+}
